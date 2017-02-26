@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> Daily Status</title>
+    <link rel="stylesheet" href="css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="css/daily_status.css" type="text/css"/>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>DAILY STATUS</h1>
+      </header>
+
+      <section>
+        <!-- <div id="selectDate">
+          <h3>SELECT A DATE</h3>
+          <label for="form">From:</label>
+          <input type="date" id="from" name="from">
+          <label for="to">To:</label>
+          <input type="date" id="to" name="to">
+          <button id="dateSelected">GO</button>
+        </div> -->
+      <ul class="accordion">
+        <li class="title">Projects</Li>
+        <li class="show">
+          <table class="table" id="projects">
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>DELETE</th>
+            </tr>
+          </table>
+        </li>
+
+        <li class="title">Team members</Li>
+        <li class="show">
+          <table class="table" id="team_members">
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>DELETE</th>
+            </tr>
+          </table>
+        </li>
+
+      </ul>
+      </section>
+
+      <footer>
+        <p>Copyright &copy; 2017, All rights are reserved</p>
+      </footer>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/daily-status-interface.js" type="text/javascript"></script>
+    <script src="js/utils.js" type="text/javascript"></script>
+    <script src="js/developer.js" type="text/javascript"></script>
+    <script src="js/developer-list.js" type="text/javascript"></script>
+    <script src="js/project.js" type="text/javascript"></script>
+    <script src="js/project-list.js" type="text/javascript"></script>
+    <script src="js/status.js" type="text/javascript"></script>
+    <script src="js/status-list.js" type="text/javascript"></script>
+    <script>
+
+        //ADD NEW DEVELOPERS
+        var developer_1 = new Developer('Vasile');
+        var developer_2 = new Developer('Ilinca');
+        var developer_3 = new Developer('Dan');
+        var developer_4 = new Developer('Viorel');
+        var developer_5 = new Developer('Maria');
+
+        // ADD NEW PROJECTS
+        var project_1 = new Project('Css');
+        var project_2 = new Project('Html');
+        var project_3 = new Project('JavaScript');
+        var project_4 = new Project('JSON');
+        var project_5 = new Project('AJAX');
+
+        //ADD PROJECTS STATUSES
+        var status_project_1 = new Status();
+        var status_project_2 = new Status();
+        var status_project_3 = new Status();
+        var status_project_4 = new Status();
+        var status_project_5 = new Status();
+
+
+        // ADD NEW DEVELOPERS TO FIRM LIST DEVELOPERS
+        var firmDevelopers = new DeveloperList();
+
+        firmDevelopers.addDeveloper(developer_1);
+        firmDevelopers.addDeveloper(developer_2);
+        firmDevelopers.addDeveloper(developer_3);
+        firmDevelopers.addDeveloper(developer_4);
+        firmDevelopers.addDeveloper(developer_5);
+
+
+        // ADD NEW PROJECT TO FIRM LIST PROJECTS
+        var firmProjects = new ProjectList();
+
+        firmProjects.addProject(project_1);
+        firmProjects.addProject(project_2);
+        firmProjects.addProject(project_3);
+        firmProjects.addProject(project_4);
+        firmProjects.addProject(project_5);
+
+        // CREATE STATUS TO FIRM LIST PROJECTS
+        var firmProjectsStatuses = new StatusList();
+
+        status_project_1.createStatus(developer_2.id, project_4.id, 'working');
+        status_project_2.createStatus(developer_2.id, project_3.id, 'working');
+        status_project_3.createStatus(developer_3.id, project_1.id, 'unstarted');
+        status_project_4.createStatus(developer_5.id, project_5.id, 'completed');
+        status_project_5.createStatus(developer_1.id, project_2.id, 'completed');
+
+        firmProjectsStatuses.addStatus(status_project_1);
+        firmProjectsStatuses.addStatus(status_project_2);
+        firmProjectsStatuses.addStatus(status_project_3);
+        firmProjectsStatuses.addStatus(status_project_4);
+        firmProjectsStatuses.addStatus(status_project_5);
+
+        //firmProjectsStatuses.dayStatusSummary(firmDevelopers,firmProjects);
+        //firmProjectsStatuses.projectStatusInPeriod(firmDevelopers,firmProjects);
+       //firmProjectsStatuses.developerStatus(firmDevelopers, firmProjects);
+
+
+    </script>
+  </body>
+</html>
