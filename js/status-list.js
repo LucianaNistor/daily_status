@@ -51,12 +51,12 @@ StatusList.prototype.removeFromStatusList = function (statusId) {
 StatusList.prototype.dayStatusSummary = function (devList, projectsList, dateString) {
 
 	var dateTimeStamp = null,
-			milliSecondsInADay = 86400000;    // 24 * 66 * 60 * 10000
+			milliSecondsInADay = 86400000;    // 24 * 60 * 60 * 1000
 
 	if (dateString == null) {
 		dateTimeStamp = new Date().setHours(0, 0, 0, 0);
 	} else {
-		dateTimeStamp = Date.parse(dateString).setHours(0, 0, 0, 0);
+		dateTimeStamp = Date.parse(dateString);
 	}
 
 	for (var i = 0; i < this.statuses.length; i++) {
@@ -90,7 +90,7 @@ StatusList.prototype.projectStatusInPeriod = function (devList, projectsList, pr
 	 var proj = projectsList.getById(projectId);
 	 var foundStatus = false;
 
-	if (projectId === false) {
+	if (proj === false) {
 
 		return false;
 	}
@@ -98,7 +98,7 @@ StatusList.prototype.projectStatusInPeriod = function (devList, projectsList, pr
 
 	for (var i = 0; i < this.statuses.length; i++) {
 
-			var proj = projectsList.getById(this.statuses[i].project);
+		//	var proj = projectsList.getById(this.statuses[i].project);
 
 		if (
 			this.statuses[i].project == projectId
@@ -130,7 +130,7 @@ StatusList.prototype.developerStatus = function (devList, projectsList, devId) {
 	for (var i = 0; i < this.statuses.length; i++) {
 
 		if (this.statuses[i].date >= startingFrom && this.statuses[i].developer === devId) {
-	
+
 			var proj = projectsList.getById(this.statuses[i].project);
 
 			console.log('Project ' + proj.name);
